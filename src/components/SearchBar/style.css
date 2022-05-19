@@ -1,3 +1,6 @@
+@import url('http://fonts.googleapis.com/css?family=Oswald:400,300,700');
+@import url('http://fonts.googleapis.com/css?family=Oswald:400,300,700');
+
 .navbar-top {
 	background-color: aqua;
 	height: 70px;
@@ -28,7 +31,6 @@
 	height: 0;
 	transition: 0.5s ease;
 }
-
 .container:hover .overlay {
 	bottom: 0;
 	height: 100%;
@@ -44,11 +46,12 @@
 	transform: translate(-50%, -50%);
 	text-align: center;
 }
-
 .backgroundChange {
 	background-color: #fff;
 }
-
 .modal-dialog {
 	max-width: 865px !important;
+}
+.btn-outline-secondary:hover {
+	background-color: rgb(37, 159, 163) !important;
 }

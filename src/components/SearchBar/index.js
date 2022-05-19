@@ -6,16 +6,18 @@ require('./style.css')
 
 const SearchBar = () => {
   const [storedData, setStoredData] = useState([])
-  const [searchText, setSearchText] = useState('')
+  const [searchText, setSearchText] = useState('sample images')
   const [modal, setModal] = useState(null)
 
   const downloadImage = (ImageData, id) => {
     saveAs(ImageData, `${id}_image.jpg`)
   }
 
+  // onChange input text
   const searchTextHandler = (e) => {
     setSearchText(e.target.value)
   }
+  // on click show the result from pixabay API.
   const getResults = async () => {
     if (searchText.length) {
       const results = await axios(
@@ -34,7 +36,8 @@ const SearchBar = () => {
 
   return (
     <>
-      <div className='container input-group mt-5 w-100'>
+      {/* search box */}
+      <div className='container input-group mt-5 w-25'>
         <input
           className='form-control border-end-0 border rounded-pill'
           type='text'
@@ -44,9 +47,11 @@ const SearchBar = () => {
           value={searchText}
           onChange={searchTextHandler}
         />
-        <button onClick={getResults}>SEARCH</button>
+        <button className="mx-2 btn btn-outline-secondary bg-white border-start-0 border border-primary rounded-pill ms-n3" type="button">
+          <i onClick={getResults} className="fa fa-search"></i>
+        </button>
       </div>
-      <h2 className='m-5'>Responsive card deck example</h2>
+      <h2 className='m-5'><u>Related images</u></h2>
       {modal && <div className="modal-backdrop opacity-50">
       </div>}
       <div
@@ -94,26 +99,28 @@ const SearchBar = () => {
         {storedData &&
           storedData.map((content) => {
             return (
-              <div key={content.id} className='col mb-4'>
-                <div className='card'>
-                  <img
-                    height='150'
-                    src={content.previewURL}
-                    onError={(e) => {
-                      e.target.src = NoImage
-                    }}
-                    onClick={() => openModal(content)}
-                    className='content-img card-img-top'
-                    alt='content from Pixabay.'
-                  />
-                  <div className='card-body '>
-                    <h5 className='card-title text-truncate'>
-                      {content.tags}
-                    </h5>
-                    <p className='card-text'>by {content.user}</p>
+              <>
+                <div key={content.id} className='col mb-4'>
+                  <div className='card'>
+                    <img
+                      height='150'
+                      src={content.previewURL}
+                      onError={(e) => {
+                        e.target.src = NoImage
+                      }}
+                      onClick={() => openModal(content)}
+                      className='content-img card-img-top'
+                      alt='content from Pixabay.'
+                    />
+                    <div className='card-body '>
+                      <h5 className='card-title text-truncate'>
+                        {content.tags}
+                      </h5>
+                      <p className='card-text'>by {content.user}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </>
             )
           })}
       </div>
