@@ -29,7 +29,6 @@ const SearchBar = () => {
   }
 
   const openModal = (content) => {
-    console.log("Hoo open")
     setModal(content)
   }
 
