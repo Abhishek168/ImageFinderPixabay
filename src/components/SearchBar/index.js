@@ -6,7 +6,7 @@ require('./style.css')
 
 const SearchBar = () => {
   const [storedData, setStoredData] = useState([])
-  const [searchText, setSearchText] = useState('sample images')
+  const [searchText, setSearchText] = useState('')
   const [modal, setModal] = useState(null)
 
   const downloadImage = (ImageData, id) => {
